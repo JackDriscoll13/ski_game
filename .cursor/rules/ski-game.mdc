@@ -1,0 +1,40 @@
+---
+description: Ski game — Vite, Three.js, jam constraints, repo layout
+globs:
+  - src/**/*
+  - "*.ts"
+  - "*.html"
+  - vite.config.ts
+alwaysApply: false
+---
+
+# Project
+
+- **Stack:** Vite + TypeScript + Three.js; **npm** for packages.
+- **Goal:** Browser game for Levels.io Vibe Coding Game Jam 2026 (see `docs/VIBEJAM_2026.md`).
+- **Constraints:** Almost **instant** first play — avoid heavy downloads and mandatory loading screens; free web play **without login** for submission.
+
+# Where code lives
+
+- `src/game/` — bootstrap, loop, game states.
+- `src/scene/` — scene, lights, environment.
+- `src/objects/` — meshes / entities.
+- `src/systems/` — input, movement, spawn, score, networking.
+- `src/assets/` — loaders and asset helpers.
+- `src/lib/` — small shared utils.
+- `public/` — static files; keep minimal for fast load.
+
+# Env and secrets
+
+- Local: copy `.env.example` → `.env` (gitignored).
+- Only **`VITE_*`** variables are available in client code; treat them as **public**.
+- Real secrets belong on a **backend** if/when multiplayer or APIs are added (`docs/HOSTING_AND_MULTIPLAYER.md`).
+
+# Agent reference
+
+- Broader context for agents: `docs/AGENT_CONTEXT.md`.
+
+# Code style
+
+- Match existing patterns; **minimal diffs** — no drive-by refactors unrelated to the task.
+- Dispose Three.js geometries/materials/textures when removing objects to avoid GPU leaks.
