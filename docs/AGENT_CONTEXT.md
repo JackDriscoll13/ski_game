@@ -2,6 +2,10 @@
 
 Read this when implementing features or refactors so changes stay aligned with the jam and architecture.
 
+## Public repository
+
+The repo is **public**. If you are unsure whether a path should be committed, **default to adding it to `.gitignore`** rather than committing. Never commit `.env`, keys, credentials, large generated artifacts, or machine-specific junk. Prefer documenting optional local files in `README.md` or `docs/`.
+
 ## Stack
 
 - **Vite** dev server and production build
@@ -28,7 +32,7 @@ Read this when implementing features or refactors so changes stay aligned with t
 ## Environment variables
 
 - Copy `.env.example` → `.env` locally. **Never commit `.env`.**
-- Vite exposes only variables prefixed with `VITE`_ to client code.
+- Vite exposes only variables prefixed with `VITE_*` to client code.
 - **Secrets:** anything in the client bundle is public. Real secrets belong on a **server** (see `HOSTING_AND_MULTIPLAYER.md`).
 
 ## Jam reminders
@@ -40,3 +44,4 @@ Read this when implementing features or refactors so changes stay aligned with t
 ## Hosting & multiplayer
 
 - Notes for Vercel vs WebSockets and future backend: `docs/HOSTING_AND_MULTIPLAYER.md`.
+

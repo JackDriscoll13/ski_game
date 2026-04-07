@@ -5,7 +5,7 @@ globs:
   - "*.ts"
   - "*.html"
   - vite.config.ts
-alwaysApply: false
+alwaysApply: true
 ---
 
 # Project
@@ -13,6 +13,14 @@ alwaysApply: false
 - **Stack:** Vite + TypeScript + Three.js; **npm** for packages.
 - **Goal:** Browser game for Levels.io Vibe Coding Game Jam 2026 (see `docs/VIBEJAM_2026.md`).
 - **Constraints:** Almost **instant** first play — avoid heavy downloads and mandatory loading screens; free web play **without login** for submission.
+
+# Public repository
+
+This repo is **public**. Anything committed is visible forever. When unsure whether a file should ship:
+
+- **Prefer `.gitignore`** (local caches, drafts, env files, large binaries, tool output, credentials, one-off exports).
+- **Do not commit** secrets, `.env`, API keys, or personal paths.
+- If something might be sensitive or bloat the repo, ignore it and document optional setup in `README.md` or `docs/` instead.
 
 # Where code lives
 

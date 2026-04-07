@@ -1,3 +1,5 @@
+# Public repo: when in doubt, add patterns here instead of committing.
+
 node_modules
 dist
 .env
