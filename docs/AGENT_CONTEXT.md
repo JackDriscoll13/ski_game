@@ -6,6 +6,10 @@ Read this when implementing features or refactors so changes stay aligned with t
 
 The repo is **public**. If you are unsure whether a path should be committed, **default to adding it to `.gitignore`** rather than committing. Never commit `.env`, keys, credentials, large generated artifacts, or machine-specific junk. Prefer documenting optional local files in `README.md` or `docs/`.
 
+## Workflow priority
+
+Ship a **playable vertical slice** (welcome → play loop → fail/restart as needed) using **local dev** (`npm run dev`) before investing in **deployment, CI, or multiplayer infrastructure**. Infra is easier once the client and UX are stable.
+
 ## Stack
 
 - **Vite** dev server and production build
@@ -19,7 +23,8 @@ The repo is **public**. If you are unsure whether a path should be committed, **
 | Path           | Purpose                                                          |
 | -------------- | ---------------------------------------------------------------- |
 | `src/main.ts`  | Entry: mounts the game into `#app`                               |
-| `src/game/`    | Bootstrap, game loop, high-level state (menu / play / game over) |
+| `src/game/`    | Bootstrap, range lobby (mountain “servers”), play session        |
+| `src/game/mountains.ts` | `PRIMARY_MOUNTAIN` / `MOUNTAIN_SERVERS` (one peak for now) |
 | `src/scene/`   | Scene graph setup, lights, environment                           |
 | `src/objects/` | Meshes, groups, player, world props                              |
 | `src/systems/` | Input, movement, spawning, scoring, networking hooks             |
