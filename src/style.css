@@ -105,11 +105,13 @@ canvas {
 }
 
 .welcome__range-map {
+  position: relative;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 56px rgba(0, 0, 0, 0.5);
   background: #0b1020;
+  min-height: min(42vh, 280px);
 }
 
 .welcome__range-svg {
@@ -117,6 +119,148 @@ canvas {
   width: 100%;
   height: auto;
   max-height: min(42vh, 280px);
+}
+
+.welcome__topo {
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.5s ease;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(120, 170, 200, 0.12), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(8, 12, 20, 0.06));
+}
+
+.welcome__topo-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 20 / 11;
+  max-height: min(42vh, 280px);
+}
+
+.welcome__topo-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.4s ease;
+}
+
+.welcome__topo-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  transition: background 0.3s ease;
+}
+
+.welcome__topo-compass {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0.22rem 0.42rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 236, 244, 0.18);
+  background: rgba(11, 16, 32, 0.46);
+  color: #dce6f5;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.welcome__topo-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: default;
+  transition: transform 0.2s ease;
+}
+
+.welcome__topo-marker:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.welcome__topo-marker:hover .welcome__topo-label {
+  opacity: 1;
+  text-shadow:
+    0 1px 0 rgba(11, 16, 32, 0.95),
+    0 0 6px rgba(11, 16, 32, 0.95),
+    0 0 14px rgba(11, 16, 32, 0.8);
+}
+
+.welcome__topo-marker:hover .welcome__topo-pin {
+  box-shadow:
+    0 0 0 2px rgba(11, 16, 32, 0.7),
+    0 0 12px rgba(140, 200, 255, 0.35);
+}
+
+.welcome__topo-marker--primary:hover .welcome__topo-pin {
+  box-shadow:
+    0 0 0 2px rgba(11, 16, 32, 0.74),
+    0 0 16px rgba(126, 231, 135, 0.4);
+}
+
+.welcome__topo-pin {
+  position: relative;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid rgba(232, 236, 244, 0.92);
+  background: radial-gradient(circle at 35% 35%, #ffffff, #8dc8ff 58%, #1f4d79 100%);
+  box-shadow: 0 0 0 2px rgba(11, 16, 32, 0.7);
+}
+
+.welcome__topo-pin::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  border: 1px solid rgba(232, 236, 244, 0.32);
+}
+
+.welcome__topo-marker--primary .welcome__topo-pin {
+  border-color: #7ee787;
+  box-shadow:
+    0 0 0 2px rgba(11, 16, 32, 0.74),
+    0 0 18px rgba(126, 231, 135, 0.24);
+}
+
+.welcome__topo-marker--primary .welcome__topo-pin::after {
+  border-color: rgba(126, 231, 135, 0.38);
+}
+
+.welcome__topo-label {
+  position: absolute;
+  left: 14px;
+  top: -16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 0 rgba(11, 16, 32, 0.95),
+    0 0 4px rgba(11, 16, 32, 0.92),
+    0 0 10px rgba(11, 16, 32, 0.72);
+}
+
+.welcome__topo-name {
+  color: #f4f8fb;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.welcome__topo-count {
+  color: #c8d5e6;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .welcome__range-hint {
@@ -196,4 +340,20 @@ canvas {
   text-align: center;
   font-size: 0.75rem;
   color: #5c6b89;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome__topo,
+  .welcome__topo-overlay,
+  .welcome__topo-light,
+  .welcome__topo-marker {
+    transition: none !important;
+    animation: none !important;
+  }
+  .welcome__topo {
+    transform: none !important;
+  }
+  .welcome__topo-overlay {
+    transform: none !important;
+  }
 }
